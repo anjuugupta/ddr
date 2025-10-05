@@ -54,25 +54,25 @@ const HeroBanner = ({
       className="relative w-full h-[90vh] flex items-center justify-center bg-center bg-cover"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="absolute inset-0 bg-black/50" />
 
-      <div className="relative z-10 max-w-4xl text-center px-6">
+      <div className="relative z-10 max-w-4xl text-center ">
         {/* Title with dynamic word */}
-        <motion.h1
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg"
-        >
-          {title}{" "}
-          <span className="text-indigo-400">
-            {typedWord}     
-            <span className="border-r-2 border-white animate-pulse ml-1" />
-          </span>
-        </motion.h1>
+     <motion.h1
+  initial={{ y: -120, opacity: 0 }} // aur upar se shuru
+  animate={{ y: -100, opacity: 1 }} // final me bhi thoda upar hi rahe
+  transition={{ duration: 0.8 }}
+  className="text-4xl md:text-6xl font-extrabold text-black drop-shadow-lg"
+>
+  {title}{" "}
+  <span className="text-[#FF9433C4]">
+    {typedWord}
+    <span className="border-r-2 border-white animate-pulse ml-1" />
+  </span>
+</motion.h1>
+
 
         {/* Animated Paragraph */}
-        <div className="mt-6 h-16 relative overflow-hidden">
+        {/* <div className="mt-6 h-16 relative overflow-hidden">
           <AnimatePresence>
             <motion.p
               key={currentIndex}
@@ -80,12 +80,12 @@ const HeroBanner = ({
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -50, opacity: 0 }}
               transition={{ duration: 0.8 }}
-              className="absolute w-full text-lg md:text-xl text-gray-200"
+              className="absolute w-full text-lg md:text-xl text-black"
             >
               {paragraphs[currentIndex]}
             </motion.p>
           </AnimatePresence>
-        </div>
+        </div> */}
 
         {/* Button */}
         <motion.div

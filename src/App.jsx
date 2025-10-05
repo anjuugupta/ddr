@@ -5,13 +5,14 @@ import Header from './pages/Header'
 import HeroBanner from './components/HeroBanner'
 import CtaSection from './components/CtsSection'
 import IndustrySection from './components/IndustrySection'
-import AboutUsSection from './components/AboutUsSection'
 import ScrollCard from './components/ScrollCard'
 import ContactUsSection from './components/ContactUsSection'
 import Footer from './components/Footer'
+import About from './components/about'
+import Service from './pages/Services'
+import CareerForm from './pages/CareerForm'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -19,9 +20,11 @@ function App() {
       <HeroBanner/>
       <CtaSection/>
       <IndustrySection/>
-      {/* <AboutUsSection/>
+      <About/>
       <ScrollCard/>
-      <ContactUsSection/> */}
+      <ContactUsSection/>
+      {/* <Service/>
+      <CareerForm/> */}
       <Footer/>
     </>
   )
