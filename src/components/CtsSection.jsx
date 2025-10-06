@@ -93,7 +93,7 @@ const CtaSection = () => {
           className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#383B97]"
         >
           Get Payroll Outsourcing Services starting at{" "}
-          <span className="text-[#383B97]">₹7,500/month*</span>
+          <span className="text-[#383B97]">₹7,500/month</span>
         </motion.h2>
 
         <motion.p
