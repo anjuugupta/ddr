@@ -22,8 +22,18 @@ const Footer = () => (
       {/* Contact */}
       <div className="text-center md:text-left">
         <h3 className="text-[#ff9f43] font-bold text-lg mb-2">Our Contact</h3>
-        <p>9987320764</p>
-        <p>contact@ddrmanagement.com</p>
+         <div>
+              <h3 className="text-lg font-bold mb-1">Contact</h3>
+              <p className="text-sm">Phone Number <span className="font-semibold">+91 98913 95711</span></p>
+            </div>
+         <div>
+              <h3 className="text-lg font-bold mb-1">Offical Mail id</h3>
+              <p className="text-sm">Email Id: <span className="font-semibold">contact@ddrmanagement.com</span></p>
+            </div>
+         <div>
+              <h3 className="text-lg font-bold mb-1">Working Hours</h3>
+              <p className="text-sm">Open Today: <span className="font-semibold">10:00 am – 07:00 pm</span></p>
+            </div>
       </div>
 
       {/* Address */}

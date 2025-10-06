@@ -104,30 +104,29 @@ const CtaSection = () => {
           transition={{ delay: 0.3 }}
           className="mt-4 text-black text-base sm:text-lg"
         >
-          Available outsourcing package for payroll processing ("Silver", "Gold" and "Platinum package")
-        </motion.p>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          variants={contentVariants}
-          transition={{ delay: 0.6 }}
-          className="mt-8 flex flex-col sm:flex-row justify-center gap-4"
-        >
-          <a
-            href="#"
-            className="inline-block px-6 py-3 rounded-2xl bg-[#383B97] text-white font-semibold text-lg shadow-lg hover:bg-indigo-700 transition transform duration-300"
+          Including payroll software with mobile attendance, biometric attendance, and face reader attendance, along with payroll processing and payroll compliance (PF, ESIC, PT & LWF return), 24Q TDS return filing, and Form 16 generation.
+</motion.p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={contentVariants}
+            transition={{ delay: 0.6 }}
+            className="mt-8 flex flex-col sm:flex-row justify-center gap-4"
           >
-            Choose Your Services Now
-          </a>
-          <a
-            href="tel:+91-XXXXXXXXXX"
-            className="inline-block px-6 py-3 rounded-2xl bg-[#383B97] text-white font-semibold text-lg shadow-lg hover:bg-indigo-700 transition transform duration-300"
-          >
-            Call Now
-          </a>
-        </motion.div>
+            <a
+              href="#"
+              className="inline-block px-6 py-3 rounded-2xl bg-[#383B97] text-white font-semibold text-lg shadow-lg hover:bg-indigo-700 transition transform duration-300"
+            >
+              Choose Your Services Now
+            </a>
+            <a
+              href="tel:+91-XXXXXXXXXX"
+              className="inline-block px-6 py-3 rounded-2xl bg-[#383B97] text-white font-semibold text-lg shadow-lg hover:bg-indigo-700 transition transform duration-300"
+            >
+              Call Now
+            </a>
+          </motion.div>
       </div>
     </section>
   );

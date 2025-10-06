@@ -1,5 +1,6 @@
 import { Link2, ChevronRight } from "lucide-react";
 import React, { useState } from "react";
+import contact from "../assets/contact.png"
 
 export default function ContactUsSection() {
   const [formData, setFormData] = useState({
@@ -218,40 +219,12 @@ export default function ContactUsSection() {
           {/* Right: Contact Info Card */}
           <div className="relative top-30 lg:w-[420px] bg-gradient-to-br from-[#6366F1] to-[#7C7FE8] text-white p-6 lg:p-8 rounded-tl-[60px] lg:rounded-tl-40 lg:rounded-tr-[60px] rounded-br-[60px] flex flex-col justify-start shadow-2xl space-y-3 max-h-[500px] overflow-y-auto">
 
-            {/* Address */}
-            <div>
-              <h3 className="text-lg font-bold mb-1">Address</h3>
-              <p className="text-sm leading-relaxed">
-                <strong>Mumbai:</strong> A-808, Deep Classic Tower, Vasai East Mumbai, Maharashtra-401208
-              </p>
-              <p className="text-sm leading-relaxed mt-1">
-                <strong>Gurgaon:</strong> 1st Floor Alt F, Orchid Business Park, Sohna Road, Sector 48, Gurgaon 122004
-              </p>
-            </div>
+           <img 
+           src={contact}
+           className="rounded-full"
+           />
 
-            {/* Contact */}
-            <div>
-              <h3 className="text-lg font-bold mb-1">Contact</h3>
-              <p className="text-sm mb-1">9987320764</p>
-              <a
-                href="mailto:contact@ddrmanagement.com"
-                className="text-sm hover:text-orange-200 transition-colors"
-              >
-                contact@ddrmanagement.com
-              </a>
-            </div>
-
-            {/* Working Hours */}
-            <div>
-              <h3 className="text-lg font-bold mb-1">Working Hours</h3>
-              <p className="text-sm">Open Today: <span className="font-semibold">10:00 am – 07:00 pm</span></p>
-            </div>
-
-            {/* Also Available At */}
-            <div>
-              <h3 className="text-lg font-bold mb-1">Also Available At</h3>
-              <p className="text-sm">Delhi-NCR, Lucknow, Varanasi, Purvanchal</p>
-            </div>
+           
           </div>
 
         </div>

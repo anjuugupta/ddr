@@ -1,32 +1,23 @@
-import { useState } from 'react'
-
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 import Header from './pages/Header'
-import HeroBanner from './components/HeroBanner'
-import CtaSection from './components/CtsSection'
-import IndustrySection from './components/IndustrySection'
-import ScrollCard from './components/ScrollCard'
-import ContactUsSection from './components/ContactUsSection'
-import Footer from './components/Footer'
-import About from './components/about'
-import Service from './pages/Services'
+import HomePage from './pages/HomePage'
+import Services from './pages/Services'
 import CareerForm from './pages/CareerForm'
+import Software from './pages/Software'
 
 function App() {
-
   return (
-    <>
+    <Router>
       <Header />
-      <HeroBanner/>
-      <CtaSection/>
-      <IndustrySection/>
-      <About/>
-      <ScrollCard/>
-      <ContactUsSection/>
-      {/* <Service/>
-      <CareerForm/> */}
-      <Footer/>
-    </>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/jobs" element={<CareerForm />} />
+        <Route path="/software" element={<Software />} />
+      </Routes>
+    </Router>
   )
 }
 

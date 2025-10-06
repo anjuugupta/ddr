@@ -58,8 +58,8 @@ const HeroBanner = ({
       <div className="relative z-10 max-w-4xl text-center ">
         {/* Title with dynamic word */}
      <motion.h1
-  initial={{ y: -120, opacity: 0 }} // aur upar se shuru
-  animate={{ y: -100, opacity: 1 }} // final me bhi thoda upar hi rahe
+  initial={{ y: -120, opacity: 0 }}
+  animate={{ y: -100, opacity: 1 }} 
   transition={{ duration: 0.8 }}
   className="text-4xl md:text-6xl font-extrabold text-black drop-shadow-lg"
 >
@@ -71,21 +71,7 @@ const HeroBanner = ({
 </motion.h1>
 
 
-        {/* Animated Paragraph */}
-        {/* <div className="mt-6 h-16 relative overflow-hidden">
-          <AnimatePresence>
-            <motion.p
-              key={currentIndex}
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -50, opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              className="absolute w-full text-lg md:text-xl text-black"
-            >
-              {paragraphs[currentIndex]}
-            </motion.p>
-          </AnimatePresence>
-        </div> */}
+      
 
         {/* Button */}
         <motion.div

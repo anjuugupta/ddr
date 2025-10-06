@@ -1,20 +1,23 @@
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
-  { name: "Home", href: "#", current: true },
-  { name: "Our Services", href: "#" },
-  { name: "Apply For Jobs", href: "#" },
-  { name: "Software Solution", href: "#" },
+  { name: "Home", href: "/" },
+  { name: "Our Services", href: "/services" },
+  { name: "Apply For Jobs", href: "/jobs" },
+  { name: "Software Solution", href: "/software" },
 ];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const location = useLocation();
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-md sticky top-0 z-50 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -25,17 +28,17 @@ export default function Header() {
           {/* Desktop Menu */}
           <nav className="hidden md:flex flex-1 justify-center space-x-8">
             {menuItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className={`relative font-medium transition-colors duration-200 ${
-                  item.current
-                    ? "border-b-2 border-blue-600"
+                  location.pathname === item.href
+                    ? "border-b-2 border-blue-600 text-blue-600"
                     : "text-gray-700 hover:text-blue-600"
                 }`}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -76,18 +79,18 @@ export default function Header() {
 
           <nav className="mt-12 space-y-4">
             {menuItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className={`block font-medium ${
-                  item.current
+                  location.pathname === item.href
                     ? "text-blue-600"
                     : "text-gray-700 hover:text-blue-600"
                 }`}
                 onClick={toggleMenu}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
