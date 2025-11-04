@@ -5,7 +5,10 @@ import Header from './pages/Header'
 import HomePage from './pages/HomePage'
 import Services from './pages/Services'
 import CareerForm from './pages/CareerForm'
-import Software from './pages/Software'
+import SoftwareSolution from './pages/SoftwareSolution'
+import WebsiteSalutions from './pages/WebsiteSalutions'
+import OnlineTraning from './pages/OnlineTraning'
+import ConsultationService from './pages/ConsultationService'
 
 function App() {
   return (
@@ -15,7 +18,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={<Services />} />
         <Route path="/jobs" element={<CareerForm />} />
-        <Route path="/software" element={<Software />} />
+        <Route path="/software" element={<SoftwareSolution />} />
+        <Route path='/website' element={<WebsiteSalutions/>} />
+        <Route path='/online-traning' element={<OnlineTraning/>} />
+        <Route path='/consultation' element={<ConsultationService/>} />
+        
       </Routes>
     </Router>
   )

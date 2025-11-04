@@ -1,37 +1,62 @@
-import React, { useState } from "react";
-import { Link2, Upload, X, CheckCircle, Briefcase, MapPin, DollarSign, Calendar } from "lucide-react";
-import Footer from "../components/Footer";
-
-// Sample data structure for dynamic steps/pages
-const pages = [
-  {
-    fields: [
-      { label: "Full Name", required: true, type: "text", name: "fullName", icon: "user" },
-      { label: "Contact", required: true, type: "text", name: "contact", icon: "phone" },
-      { label: "Email", required: true, type: "email", name: "email", icon: "mail" },
-      { label: "Highest Qualification", required: false, type: "text", name: "qualification", icon: "graduation" },
-      { label: "Job Title", required: false, type: "text", name: "jobTitle", icon: "briefcase" },
-    ],
-    rightFields: [
-      { label: "Preferred Location", required: false, type: "text", name: "location", icon: "map" },
-      { label: "Work Experiences", required: false, type: "text", name: "experience", icon: "clock" },
-      { label: "Previous Employee", required: false, type: "text", name: "previousEmployee", icon: "building" },
-      { label: "Expected Salary", required: false, type: "text", name: "salary", icon: "dollar" },
-      { label: "Availability to start work", required: false, type: "text", name: "availability", icon: "calendar" },
-    ],
-    showAttachment: true,
-  },
-];
+import React, { useState } from 'react';
+import { Upload, X } from 'lucide-react';
+import Footer from '../components/Footer';
 
 export default function CareerForm() {
-  const [page, setPage] = useState(0);
+  const [formData, setFormData] = useState({
+    fullName: '',
+    contact: '',
+    email: '',
+    highestQualification: '',
+    jobTitle: '',
+    preferredLocation: '',
+    workExperiences: '',
+    previousEmployer: '',
+    expectedSalary: '',
+    availability: ''
+  });
+  
   const [files, setFiles] = useState([]);
-  const [focusedField, setFocusedField] = useState(null);
-  const [formData, setFormData] = useState({});
-  const totalPages = pages.length;
+  const [dragActive, setDragActive] = useState(false);
 
-  const handleFileChange = (e) => {
-    const newFiles = Array.from(e.target.files);
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFiles(e.dataTransfer.files);
+    }
+  };
+
+  const handleFileInput = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      handleFiles(e.target.files);
+    }
+  };
+
+  const handleFiles = (fileList) => {
+    const newFiles = Array.from(fileList).filter(file => {
+      const fileType = file.name.split('.').pop().toLowerCase();
+      return ['pdf', 'doc', 'docx', 'xlsx', 'pptx'].includes(fileType);
+    });
     setFiles([...files, ...newFiles]);
   };
 
@@ -39,240 +64,251 @@ export default function CareerForm() {
     setFiles(files.filter((_, i) => i !== index));
   };
 
-  const handleInputChange = (name, value) => {
-    setFormData({ ...formData, [name]: value });
+  const handleSubmit = () => {
+    console.log('Form Data:', formData);
+    console.log('Files:', files);
+    alert('Application submitted successfully!');
   };
-
-  const current = pages[page];
 
   return (
     <div>
 
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
-      {/* Floating Decorative Elements */}
-      <div className="absolute top-20 right-10 w-20 h-20 border-4 border-indigo-400/20 rotate-45 rounded-lg" style={{ animation: 'float 6s ease-in-out infinite' }}></div>
-      <div className="absolute bottom-40 left-10 w-24 h-24 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full" style={{ animation: 'float 8s ease-in-out infinite', animationDelay: '1s' }}></div>
-
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(45deg); }
-          50% { transform: translateY(-20px) rotate(45deg); }
-        }
-      `}</style>
-
-      <div className="relative z-10 container mx-auto px-4 py-12">
-        {/* Header Section */}
-        <div className="text-center mb-12 space-y-4">
-          <div className="inline-block">
-            <div className="flex items-center justify-center gap-2 bg-indigo-100 text-indigo-700 px-6 py-2 rounded-full text-sm font-semibold mb-4 shadow-sm">
-              <Briefcase size={18} />
-              <span>Join Our Team</span>
-            </div>
-          </div>
-          
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#202261D6] via-orange-300 to-[#FF9433C4] bg-clip-text text-transparent mb-4">
-            Career Opportunities
+    <div className="min-h-screen pt-40 bg-gradient-to-br from-blue-50 to-orange-50 py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-semibold text-gray-800 mb-2">
+            Just submit your CV and we will find a better job for you.
           </h1>
-          
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            Submit your CV and let us find the perfect role that matches your skills and aspirations
-          </p>
         </div>
 
-        {/* Main Form Container */}
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 overflow-hidden">
-            {/* Progress Indicator */}
-            <div className="bg-gradient-to-r from-[#202261D6] via-orange-300 to-[#FF9433C4] h-2">
-              <div 
-                className="h-full bg-white/30 transition-all duration-500"
-                style={{ width: `${((page + 1) / totalPages) * 100}%` }}
-              ></div>
-            </div>
-
-            <form className="p-8 md:p-12">
-              {/* Form Fields Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Form Section */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-lg shadow-sm p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Left Column */}
                 <div className="space-y-6">
-                  {current.fields.map((field, i) => (
-                    <div 
-                      key={i}
-                      className="group"
-                    >
-                      <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-                        {field.label}
-                        {field.required && <span className="text-red-500">*</span>}
-                      </label>
-                      <div className="relative">
-                        <input
-                          type={field.type}
-                          name={field.name}
-                          value={formData[field.name] || ''}
-                          onChange={(e) => handleInputChange(field.name, e.target.value)}
-                          onFocus={() => setFocusedField(field.name)}
-                          onBlur={() => setFocusedField(null)}
-                          className={`w-full px-4 py-3 bg-gray-50 border-2 rounded-xl outline-none transition-all duration-300 ${
-                            focusedField === field.name
-                              ? 'border-orange-500 bg-white shadow-lg scale-[1.02]'
-                              : 'border-gray-200 hover:border-gray-300'
-                          }`}
-                          required={field.required}
-                          placeholder={`Enter your ${field.label.toLowerCase()}`}
-                        />
-                        {formData[field.name] && (
-                          <CheckCircle className="absolute right-4 top-1/2 -translate-y-1/2 text-green-500" size={20} />
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Full Name*</label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Contact*</label>
+                    <input
+                      type="tel"
+                      name="contact"
+                      value={formData.contact}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Email*</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Highest Qualification*</label>
+                    <input
+                      type="text"
+                      name="highestQualification"
+                      value={formData.highestQualification}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Job Title*</label>
+                    <input
+                      type="text"
+                      name="jobTitle"
+                      value={formData.jobTitle}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
                 </div>
 
                 {/* Right Column */}
                 <div className="space-y-6">
-                  {current.rightFields.map((field, i) => (
-                    <div 
-                      key={i}
-                      className="group"
-                    >
-                      <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
-                        {field.icon === 'map' && <MapPin size={16} className="text-indigo-500" />}
-                        {field.icon === 'dollar' && <DollarSign size={16} className="text-indigo-500" />}
-                        {field.icon === 'calendar' && <Calendar size={16} className="text-indigo-500" />}
-                        {field.label}
-                        {field.required && <span className="text-red-500">*</span>}
-                      </label>
-                      <div className="relative">
-                        <input
-                          type={field.type}
-                          name={field.name}
-                          value={formData[field.name] || ''}
-                          onChange={(e) => handleInputChange(field.name, e.target.value)}
-                          onFocus={() => setFocusedField(field.name)}
-                          onBlur={() => setFocusedField(null)}
-                          className={`w-full px-4 py-3 bg-gray-50 border-2 rounded-xl outline-none transition-all duration-300 ${
-                            focusedField === field.name
-                              ? 'border-indigo-500 bg-white shadow-lg scale-[1.02]'
-                              : 'border-gray-200 hover:border-gray-300'
-                          }`}
-                          required={field.required}
-                          placeholder={`Enter ${field.label.toLowerCase()}`}
-                        />
-                        {formData[field.name] && (
-                          <CheckCircle className="absolute right-4 top-1/2 -translate-y-1/2 text-green-500" size={20} />
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Preferred Location</label>
+                    <input
+                      type="text"
+                      name="preferredLocation"
+                      value={formData.preferredLocation}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Work Experiences</label>
+                    <input
+                      type="text"
+                      name="workExperiences"
+                      value={formData.workExperiences}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Previous Employer</label>
+                    <input
+                      type="text"
+                      name="previousEmployer"
+                      value={formData.previousEmployer}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Expected Salary*</label>
+                    <input
+                      type="text"
+                      name="expectedSalary"
+                      value={formData.expectedSalary}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-gray-700 mb-2">Availability to start work</label>
+                    <input
+                      type="text"
+                      name="availability"
+                      value={formData.availability}
+                      onChange={handleInputChange}
+                      className="w-full border-b-2 border-gray-300 focus:border-blue-900 outline-none py-2 transition-colors"
+                    />
+                  </div>
                 </div>
               </div>
 
               {/* File Upload Section */}
-              {current.showAttachment && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <Upload size={20} className="text-indigo-600" />
-                    Attach Your Documents
-                  </h3>
-                  
-                  <div className="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center hover:border-indigo-400 transition-all duration-300 bg-gray-50 hover:bg-white group cursor-pointer">
-                    <input
-                      type="file"
-                      multiple
-                      className="hidden"
-                      onChange={handleFileChange}
-                      id="file-upload"
-                    />
-                    <label htmlFor="file-upload" className="cursor-pointer">
-                      <div className="flex flex-col items-center gap-3">
-                        <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <Upload size={28} className="text-indigo-600" />
-                        </div>
-                        <div>
-                          <p className="text-gray-700 font-medium">Drop files here or click to upload</p>
-                          <p className="text-sm text-gray-500 mt-1">PDF, DOC, DOCX (Max 10MB)</p>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-
-                  {/* File List */}
-                  {files.length > 0 && (
-                    <div className="mt-4 space-y-2">
-                      {files.map((file, index) => (
-                        <div 
-                          key={index}
-                          className="flex items-center justify-between bg-indigo-50 rounded-xl p-4 group hover:bg-indigo-100 transition-colors"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-indigo-200 rounded-lg flex items-center justify-center">
-                              <Link2 size={20} className="text-indigo-600" />
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium text-gray-800">{file.name}</p>
-                              <p className="text-xs text-gray-500">{(file.size / 1024).toFixed(2)} KB</p>
-                            </div>
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => removeFile(index)}
-                            className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-colors"
-                          >
-                            <X size={16} />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+              <div className="mt-8">
+                <div className="flex items-center gap-2 mb-4">
+                  <input type="checkbox" id="attachFiles" className="w-4 h-4" />
+                  <label htmlFor="attachFiles" className="text-sm text-gray-700">
+                    Attach Files
+                  </label>
+                  <span className="text-sm text-gray-500">Attachments ({files.length})</span>
                 </div>
-              )}
+
+                <div
+                  className={`border-2 border-dashed rounded-lg p-12 text-center transition-colors ${
+                    dragActive ? 'border-blue-900 bg-blue-50' : 'border-gray-300'
+                  }`}
+                  onDragEnter={handleDrag}
+                  onDragLeave={handleDrag}
+                  onDragOver={handleDrag}
+                  onDrop={handleDrop}
+                >
+                  <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-600 mb-2">Drop files here or click to upload</p>
+                  <p className="text-sm text-gray-400">PDF, DOC, DOCX (Max 10MB)</p>
+                  <input
+                    type="file"
+                    multiple
+                    accept=".pdf,.doc,.docx,.xlsx,.pptx"
+                    onChange={handleFileInput}
+                    className="hidden"
+                    id="fileInput"
+                  />
+                  <label
+                    htmlFor="fileInput"
+                    className="inline-block mt-4 px-6 py-2 bg-gray-100 text-gray-700 rounded cursor-pointer hover:bg-gray-200 transition-colors"
+                  >
+                    Choose Files
+                  </label>
+                </div>
+
+                {/* File List */}
+                {files.length > 0 && (
+                  <div className="mt-4 space-y-2">
+                    {files.map((file, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between bg-gray-50 p-3 rounded"
+                      >
+                        <span className="text-sm text-gray-700 truncate">{file.name}</span>
+                        <button
+                          type="button"
+                          onClick={() => removeFile(index)}
+                          className="text-red-500 hover:text-red-700 ml-4"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* Submit Button */}
               <button
-                type="submit"
-                className="group relative w-full bg-gradient-to-r from-[#202261D6] via-orange-300 to-[#FF9433C4] text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-95 overflow-hidden"
+                onClick={handleSubmit}
+                className="w-full mt-8 bg-blue-900 text-white py-3 rounded-lg font-medium hover:bg-blue-800 transition-colors"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Submit Application
-                  <CheckCircle size={20} className="group-hover:rotate-12 transition-transform" />
-                </span>
+                Submit Application
               </button>
 
-              {/* reCAPTCHA Notice */}
-              <p className="text-xs text-gray-500 text-center mt-6">
-                This site is protected by reCAPTCHA and the Google{' '}
-                <a href="#" className="text-indigo-600 hover:underline">Privacy Policy</a> and{' '}
-                <a href="#" className="text-indigo-600 hover:underline">Terms of Service</a> apply.
+              <p className="text-xs text-gray-500 text-center mt-4">
+                This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
               </p>
-            </form>
+            </div>
           </div>
 
-          {/* Benefits Section */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: <Briefcase />, title: "Career Growth", desc: "Continuous learning opportunities" },
-              { icon: <MapPin />, title: "Flexible Location", desc: "Remote & hybrid options" },
-              { icon: <DollarSign />, title: "Competitive Pay", desc: "Industry-leading salaries" }
-            ].map((benefit, idx) => (
-              <div 
-                key={idx}
-                className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg border border-white hover:shadow-xl transition-all hover:scale-105"
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-[#202261D6] via-orange-300 to-[#FF9433C4] rounded-full flex items-center justify-center mx-auto mb-4 text-white">
-                  {benefit.icon}
+          {/* Image Section */}
+          <div className="lg:col-span-1">
+            <div className="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl p-8 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-400 rounded-bl-full"></div>
+              <div className="bg-white rounded-2xl p-8 relative z-10 shadow-lg">
+                <div className="bg-gray-100 rounded-lg p-8 mb-6">
+                  <div className="flex items-center justify-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-green-400 rounded flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div className="w-12 h-12 bg-blue-400 rounded flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-gray-800 mb-2">{benefit.title}</h3>
-                <p className="text-sm text-gray-600">{benefit.desc}</p>
+                <div className="bg-white border-2 border-gray-200 rounded-lg p-4 shadow-sm">
+                  <div className="w-full h-24 bg-gradient-to-br from-gray-50 to-gray-100 rounded"></div>
+                </div>
               </div>
-            ))}
+              <div className="flex gap-2 mt-6 justify-center">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-white' : 'bg-blue-700'}`}
+                  ></div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import education from "../assets/education.jpg";
 import factories from "../assets/factories.jpg";
 import healthcare from "../assets/healthcare.jpg";
 import hospital from "../assets/hospital.png";
 
 export default function IndustrySection() {
-    const [isExpanded, setIsExpanded] = useState(false);
-    const [activeIndex, setActiveIndex] = useState(null);
-    const sectionRef = useRef(null);
 
     const industries = [
         {
@@ -32,115 +29,41 @@ export default function IndustrySection() {
         },
     ];
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (sectionRef.current) {
-                const rect = sectionRef.current.getBoundingClientRect();
-                const isInView = rect.top < window.innerHeight * 0.6 && rect.bottom > 0;
-                setIsExpanded(isInView);
-            }
-        };
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const isMobile = () =>
-        typeof window !== 'undefined' && window.innerWidth < 640;
-
     return (
-        <div
-            ref={sectionRef}
-            className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-2 sm:px-6 lg:px-8"
-        >
-            <div className="max-w-7xl mx-auto">
-                {/* Title */}
-                <h2 className="text-lg sm:text-3xl md:text-5xl font-bold text-center text-indigo-900 sm:mb-40 px-2">
-                    Comprehensive Payroll & Attendance Solutions for Every Industry
-                </h2>
+        <section className="relative py-36 px-14 md:px-10 overflow-hidden">
 
-                {/* ✅ Mobile Simple Layout */}
-                {isMobile() ? (
-                    <div className="space-y-10 mt-10">
-                        {industries.map((industry, index) => (
-                            <div key={index} className="text-center px-4">
-                                <h3 className="text-xl font-bold text-indigo-900 mb-3">
-                                    {industry.title}
-                                </h3>
-                                <img
-                                    src={industry.image}
-                                    alt={industry.title}
-                                    className="w-full max-w-xs mx-auto rounded-xl shadow-lg border border-gray-200 mb-3"
-                                />
-                                <p className="text-gray-700 text-sm">{industry.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    /* ✅ Desktop Circular Animation Layout */
-                    <div className="relative min-h-[550px] flex flex-col items-center justify-center">
-                        {/* Center overlay text */}
-                        <div className="absolute inset-0 sm:flex items-center -mt-12 justify-center z-10 pointer-events-none hidden">
-                            <div className="text-center max-w-sm px-8">
-                                {activeIndex !== null && (
-                                    <div className="animate-fadeIn">
-                                        <h3 className="text-2xl md:text-3xl font-bold text-indigo-900 mb-4">
-                                            {industries[activeIndex].title}
-                                        </h3>
-                                        <p className="text-base md:text-lg text-gray-700">
-                                            {industries[activeIndex].description}
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        {/* Circular arrangement */}
-                        <div
-                            className={`relative w-full h-[350px] sm:h-full transition-all p-2 sm:p-10 duration-1000 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}
-                        >
-                            {industries.map((industry, index) => {
-                                const angle = (index * 360) / industries.length;
-                                const radiusLg = isExpanded ? 280 : 0; 
-                                const x = `calc(-50% + ${Math.cos((angle * Math.PI) / 180) * radiusLg}px)`;
-                                const y = `calc(-50% + ${Math.sin((angle * Math.PI) / 180) * radiusLg}px)`;
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`absolute top-1/2 left-1/2 transition-all duration-1000 ease-out cursor-pointer ${isExpanded ? 'scale-100' : 'scale-0'}`}
-                                        style={{
-                                            transform: `translate(${x}, ${y})`,
-                                            transitionDelay: `${index * 100}ms`,
-                                        }}
-                                        onMouseEnter={() => setActiveIndex(index)}
-                                        onMouseLeave={() => setActiveIndex(null)}
-                                    >
-                                        <div className="relative group">
-                                            <div
-                                                className={`relative w-28 h-28 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-full overflow-hidden border-4 transition-all duration-500 ${activeIndex === index
-                                                        ? 'border-indigo-500 scale-110 shadow-2xl'
-                                                        : 'border-orange-300 scale-100 shadow-lg'
-                                                    }`}
-                                            >
-                                                <img
-                                                    src={industry.image}
-                                                    alt={industry.title}
-                                                    className={`w-full h-full object-cover transition-all duration-500 ${activeIndex === index ? 'grayscale-0' : 'grayscale'
-                                                        }`}
-                                                />
-                                            </div>
-                                            <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 w-32 sm:w-48">
-                                                <p className="text-center text-xs sm:text-sm font-semibold text-gray-800">
-                                                    {industry.title}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+            {/* 🔵 Blue spot (Left) */}
+            <div className="absolute -top-20 -left-10 w-100 h-100 bg-blue-300/40 blur-[90px] rounded-full"></div>
+
+            {/* 🟠 Orange spot (Right) */}
+            <div className="absolute bottom-0 right-0 w-100 h-100 bg-orange-300/50 blur-[110px] rounded-full"></div>
+
+            {/* Title */}
+            <h2 className="relative text-center text-2xl md:text-4xl font-bold text-[#2B2B6F] mb-14 z-10">
+                Comprehensive Payroll & Attendance Solutions for Every Industry
+            </h2>
+
+            {/* Cards */}
+            <div className="relative max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 z-10">
+                {industries.map((item, index) => (
+                    <div
+                        key={index}
+                        className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer bg-white/40 backdrop-blur-sm"
+                    >
+                        <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-60 object-cover rounded-xl group-hover:scale-110 transition-all duration-700"
+                        />
+
+                        {/* Hover Overlay Text */}
+                        <div className="absolute bottom-0 left-0 right-0 h-0 group-hover:h-full bg-black/65 backdrop-blur-md text-white p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 rounded-xl transition-all duration-500">
+                            <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                            <p className="text-sm">{item.description}</p>
                         </div>
                     </div>
-                )}
+                ))}
             </div>
-        </div>
+        </section>
     );
 }
