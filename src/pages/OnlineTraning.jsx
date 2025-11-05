@@ -7,6 +7,7 @@ import three from "../assets/onlinetraning/three.jpg"
 import four from "../assets/onlinetraning/four.jpg"
 import five from "../assets/onlinetraning/five.jpg"
 import trainingImg from "../assets/highlight.jpg"
+import payrollcompliance from "../assets/payrollcompliance.jpg"
 
 function OnlineTraning() {
  const modules = [
@@ -35,6 +36,11 @@ function OnlineTraning() {
       title: "Best Practices",
       desc: "Navigate HRMS efficiently, save time, and troubleshoot common issues.",
     },
+    {
+      img: payrollcompliance,
+  title: "Payroll Compliance",
+  desc: "Understand key statutory components like PF, ESIC, PT, and LWF to ensure accurate payroll processing."
+}
   ];
 
     const highlights = [
@@ -119,6 +125,7 @@ function OnlineTraning() {
               title: "Anyone",
               desc: "aiming to gain hands-on experience in TDS/TCS calculations, challan generation, return filing, and Form 16/16A preparation",
             },
+            
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 rounded-full border-2 border-[#C7A985] bg-[#F7EAD8] flex items-center justify-center font-bold text-[#C19154]">
@@ -137,6 +144,8 @@ function OnlineTraning() {
         Start your journey to TDS/TCS expertise and ensure accurate compliance and smooth tax processes.
       </p>
     </section>
+
+    {/* Card section */}
      <section className="w-full py-14 px-5 md:px-10 bg-white">
       {/* Heading */}
       <div className="text-center max-w-3xl mx-auto">
@@ -176,6 +185,8 @@ function OnlineTraning() {
         ))}
       </div>
     </section>
+
+    {/* Traning Highlight */}
      <section className="w-full px-5 md:px-12 py-14 md:py-20">
       {/* Training Highlight Title */}
       <h2 className="text-center text-2xl md:text-3xl font-semibold text-[#1A2B6B] mb-8">

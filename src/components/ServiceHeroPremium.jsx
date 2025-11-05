@@ -10,7 +10,7 @@ const ServiceHeroPremium = () => {
             {/* 🟠 Orange spot (Right) */}
             <div className="absolute bottom-0 right-0 w-100 h-100 bg-orange-300/150 blur-[110px] rounded-full"></div>
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-white to-orange-50 opacity-95" />
+      <div className="absolute" />
 
       {/* Left Dotted "L" Shape */}
 <div className="absolute bottom-6 left-3 md:left-8 flex flex-col pb-20">
@@ -47,7 +47,7 @@ const ServiceHeroPremium = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-4 md:px-6">
 
-   <h2 className="text-3xl md:text-5xl font-bold text-orange-500 mb-8 md:mb-12 text-center">
+   <h2 className="text-3xl md:text-5xl font-bold text-orange-500 mb-8 md:mb-12 text-center pt-40">
             Software Solution
           </h2>
         <img

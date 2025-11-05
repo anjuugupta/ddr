@@ -103,52 +103,7 @@ export default function ContactUsSection() {
               </p>
             </div>
 
-            {/* File Upload */}
-            <div>
-              <div className="flex items-center gap-3 text-sm text-gray-700 mb-2">
-                <span className="flex items-center gap-1 text-blue-600">
-                  <Upload size={16} /> Attach Files
-                </span>
-                <span className="text-gray-500 ml-auto">
-                  Attachments ({files.length})
-                </span>
-              </div>
-
-              {/* Drag Box */}
-              <div
-                onDragEnter={handleDrag}
-                onDragOver={handleDrag}
-                onDragLeave={handleDrag}
-                onDrop={handleDrop}
-                className={`border-2 border-dashed rounded-xl p-6 text-center transition-colors ${
-                  dragActive ? "border-blue-700 bg-blue-50" : "border-gray-300"
-                }`}
-              >
-                <Upload className="mx-auto mb-2" />
-                <p className="text-gray-600 text-sm">
-                  Drop files here or click to upload
-                </p>
-                <p className="text-xs text-gray-400 mt-1">
-                  PDF, DOC, DOCX (Max 10MB)
-                </p>
-
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  multiple
-                  onChange={handleFileInput}
-                  className="hidden"
-                />
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="mt-3 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm"
-                >
-                  Choose Files
-                </button>
-              </div>
-            </div>
-
+            
             <div className="flex items-center gap-2 text-sm">
               <input type="checkbox" />
               <p className="text-gray-600">

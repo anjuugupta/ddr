@@ -56,7 +56,7 @@ const CtaSection = () => {
           Get Payroll Outsourcing Services starting at{" "}
           <span className="relative text-[#383B97] inline-block">
             ₹7,500/month
-            <span className="absolute -top-2 -right-3 text-red-500 text-xl">*</span>
+            <span className="absolute  -right-3 text-red-500 text-xl">*</span>
           </span>
         </motion.h2>
 
@@ -78,22 +78,23 @@ const CtaSection = () => {
   className="mt-8 flex flex-col sm:flex-row justify-center gap-4"
 >
   {/* ✅ WhatsApp Button */}
-  <a
-    href="https://wa.me/919876543210?text=Hello%2C%20I%27m%20interested%20in%20your%20Payroll%20Outsourcing%20Services."
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#383B97] text-white font-semibold text-lg shadow-lg hover:bg-[#383B97] transition transform duration-300"
+<a
+  href="https://wa.me/919987320764"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-[#383B97] text-white font-semibold text-lg shadow-lg hover:bg-[#2e317d] transition transform duration-300"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    className="w-6 h-6"
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-      className="w-6 h-6"
-    >
-      <path d="M16.2 13.3c-.3-.2-1.7-.8-1.9-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.3-.6.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.3.4-.4.1-.1.2-.2.3-.4.1-.2.1-.3 0-.5-.1-.2-.7-1.7-1-2.3-.3-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.3 3.9.6.3 1 .5 1.3.6.5.2.9.2 1.2.1.4-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.1-1.3-.2-.2-.4-.3-.7-.4zM12 2C6.5 2 2 6.4 2 11.9c0 2.1.6 4.1 1.8 5.8L2 22l4.4-1.4c1.6.9 3.4 1.4 5.3 1.4 5.5 0 10-4.4 10-9.9C21.9 6.4 17.5 2 12 2z" />
-    </svg>
-    WhatsApp Now
-  </a>
+    <path d="M16.2 13.3c-.3-.2-1.7-.8-1.9-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.3-.6.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.3.4-.4.1-.1.2-.2.3-.4.1-.2.1-.3 0-.5-.1-.2-.7-1.7-1-2.3-.3-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.3 3.9.6.3 1 .5 1.3.6.5.2.9.2 1.2.1.4-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.1-1.3-.2-.2-.4-.3-.7-.4zM12 2C6.5 2 2 6.4 2 11.9c0 2.1.6 4.1 1.8 5.8L2 22l4.4-1.4c1.6.9 3.4 1.4 5.3 1.4 5.5 0 10-4.4 10-9.9C21.9 6.4 17.5 2 12 2z" />
+  </svg>
+  WhatsApp Now
+</a>
+
 
   {/* 📞 Call Now Button */}
   <a
@@ -103,11 +104,13 @@ const CtaSection = () => {
     Call Now
   </a>
 
-  <a 
-    className="inline-block px-6 py-3 rounded-2xl bg-[#383B97] text-white font-semibold text-lg shadow-lg hover:bg-indigo-700 transition transform duration-300"
-  >
-    Apply for job
-  </a>
+<a
+  href="mailto:rupesh.tech1224@gmail.com"
+  className="inline-block px-6 py-3 rounded-2xl bg-[#383B97] text-white font-semibold text-lg shadow-lg hover:bg-[#2e317d] transition transform duration-300"
+>
+  Apply for Job
+</a>
+
 </motion.div>
 
       </div>

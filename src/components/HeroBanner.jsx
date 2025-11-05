@@ -65,7 +65,7 @@ const HeroBanner = () => {
       {/* ORANGE GLOW SPOT RIGHT SIDE */}
       <div className="absolute right-0 top-1/3 w-[260px] h-[260px] bg-orange-400 rounded-full blur-[120px] opacity-40 pointer-events-none"></div>
 
-      <div className="text-center mb-12 px-4 relative z-20">
+      <div className="text-center mb-12 px-4 relative z-20 pt-15">
         <h2 className="text-2xl md:text-xl font-semibold text-orange-500 mb-2">
           <span className="text-[#1F215F] text-5xl font-bold">DDR MANAGEMENT </span> <br />
           <span className="text-[#4044C5] font-bold">OUTSOURCING</span>

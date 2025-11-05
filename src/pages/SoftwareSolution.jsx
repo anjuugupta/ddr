@@ -11,6 +11,7 @@ import ondemand from "../assets/ondemand.png";
 import Footer from "../components/Footer";
 import tds from "../assets/tds.png"
 import ServiceHeroPremium from "../components/ServiceHeroPremium";
+import assetssoftware from "../assets/assetssoftware.webp"
 
 const SoftwareSolution = () => {
   const [progress, setProgress] = useState(0);
@@ -82,7 +83,8 @@ const SoftwareSolution = () => {
       title: "ASSET MANAGEMENT SOFTWARE SOLUTION",
       description:
 "Efficiently manage and track all your business assets with our powerful Asset Management Software. From acquisition to disposal, gain complete visibility and control through automated tracking, smart depreciation, and real-time insights. Simplify compliance, reduce costs, and make smarter decisions all from one centralized platform.",
-      img: tds,
+ color: "#062d81ff",      
+img: assetssoftware,
     },
   ];
 
@@ -100,7 +102,7 @@ const SoftwareSolution = () => {
   }, []);
 
   return (
-    <div className="pt-40">
+    <div className="">
 
 <ServiceHeroPremium />
     <div className="min-h-screen pt-30 pb-10 bg-white py-12 px-4 sm:px-6  relative overflow-hidden">

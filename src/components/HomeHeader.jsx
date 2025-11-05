@@ -40,7 +40,7 @@ const HomeHeader = () => {
 
   return (
     <div>
-      <div className="min-h-screen bg-gradient-to-br from-gray-100 via-white to-orange-50 py-28 relative overflow-hidden">
+      <div className="min-h-screen  py-28 relative overflow-hidden">
         {/* Background Heading */}
         <div className="text-center mb-12 px-4">
           <h2 className="text-2xl md:text-3xl font-semibold text-orange-500 mb-2">

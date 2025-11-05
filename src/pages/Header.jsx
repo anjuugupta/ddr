@@ -8,7 +8,7 @@ const menuItems = [
   { name: "Our Services", href: "/services" },
   // { name: "Apply For Jobs", href: "/jobs" },
   { name: "Software Solution", href: "/software" },
-  {name: "Website Salutions", href: "/website"},
+  {name: "Website Solutions", href: "/website"},
   {name: "Online Traning", href: "/online-traning"},
   {name: "Consultation Services", href: "/consultation"}
 ];
