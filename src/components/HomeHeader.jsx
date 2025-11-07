@@ -11,37 +11,24 @@ import Footer from "./Footer";
 const HomeHeader = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Slides configuration
   const slides = [
-    {
-      left: calnder,
-      center: dashboard,
-      right: cal,
-    },
-    {
-      left: dashboard,
-      center: cal,
-      right: calnder,
-    },
-    {
-      left: cal,
-      center: calnder,
-      right: dashboard,
-    },
+    { left: calnder, center: dashboard, right: cal },
+    { left: dashboard, center: cal, right: calnder },
+    { left: cal, center: calnder, right: dashboard },
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 3000);
-
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div>
-      <div className="min-h-screen  py-28 relative overflow-hidden">
-        {/* Background Heading */}
+      {/* Header Section */}
+      <div className="min-h-screen py-24 relative overflow-hidden flex flex-col justify-center">
+        {/* Heading */}
         <div className="text-center mb-12 px-4">
           <h2 className="text-2xl md:text-3xl font-semibold text-orange-500 mb-2">
             Website Solution
@@ -53,101 +40,73 @@ const HomeHeader = () => {
           </p>
         </div>
 
-        {/* Image Section with Carousel Animations */}
-        <div className="relative flex items-center justify-center px-4 md:px-8 overflow-hidden">
-          <div className="relative flex items-center justify-center max-w-7xl w-full h-[500px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                {/* Left Image */}
-                <motion.div
-                  initial={{ x: -200, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -200, opacity: 0 }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
-                  className="absolute left-20 transform -translate-x-1/3 z-10 hidden lg:block"
-                >
-                  <img src={slides[currentSlide].left} alt="Left" className="w-64 xl:w-80 rounded-2xl shadow-2xl" />
-                </motion.div>
-
-                {/* Center Image */}
-                <motion.div
-                  initial={{ y: 100, opacity: 0, scale: 0.8 }}
-                  animate={{ y: 0, opacity: 1, scale: 1 }}
-                  exit={{ y: -100, opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
-                  className="relative mx-auto z-20"
-                >
-                  <img src={slides[currentSlide].center} alt="Center" className="w-full max-w-3xl rounded-2xl shadow-2xl" />
-                </motion.div>
-
-                {/* Right Image */}
-                <motion.div
-                  initial={{ x: 200, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: 200, opacity: 0 }}
-                  transition={{ duration: 1, ease: "easeInOut", delay: 0.4 }}
-                  className="absolute right-30 transform translate-x-1/3 z-10 hidden lg:block"
-                >
-                  <img src={slides[currentSlide].right} alt="Right" className="w-64 xl:w-80 rounded-2xl shadow-2xl" />
-                </motion.div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Mobile Carousel View */}
-        <div className="lg:hidden relative z-10 px-4 mt-8">
+        {/* Desktop View */}
+        <div className="hidden lg:flex items-center justify-center gap-6 px-6 max-w-7xl mx-auto w-full">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              className="space-y-6"
-            >
-              <motion.div
-                initial={{ x: -150, opacity: 0 }}
+            <motion.div key={currentSlide} className="flex items-center justify-center gap-6 w-full">
+              
+              {/* Left Image */}
+              <motion.img
+                src={slides[currentSlide].left}
+                initial={{ x: -80, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -150, opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="mx-auto max-w-md"
-              >
-                <img src={slides[currentSlide].left} alt="Left" className="w-full rounded-2xl shadow-xl border-4 border-white" />
-              </motion.div>
+                exit={{ x: -80, opacity: 0 }}
+                transition={{ duration: 0.8 }}
+                className="w-1/4 max-w-xs rounded-xl shadow-xl"
+                alt="Left"
+              />
 
-              <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -100, opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
-                className="mx-auto max-w-2xl"
-              >
-                <img src={slides[currentSlide].center} alt="Center" className="w-full rounded-2xl shadow-xl border-4 border-white" />
-              </motion.div>
+              {/* Center Image */}
+              <motion.img
+                src={slides[currentSlide].center}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="w-1/3 max-w-lg rounded-xl shadow-2xl"
+                alt="Center"
+              />
 
-              <motion.div
-                initial={{ x: 150, opacity: 0 }}
+              {/* Right Image */}
+              <motion.img
+                src={slides[currentSlide].right}
+                initial={{ x: 80, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                exit={{ x: 150, opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.4 }}
-                className="mx-auto max-w-md"
-              >
-                <img src={slides[currentSlide].right} alt="Right" className="w-full rounded-2xl shadow-xl border-4 border-white" />
-              </motion.div>
+                exit={{ x: 80, opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="w-1/4 max-w-xs rounded-xl shadow-xl"
+                alt="Right"
+              />
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Slide Indicators */}
-        <div className="flex justify-center gap-2 mt-8">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentSlide === index ? "bg-orange-500 w-8" : "bg-gray-300"
-              }`}
+        {/* Mobile & Tablet Carousel */}
+        <div className="lg:hidden block px-4 mt-6">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentSlide}
+              src={slides[currentSlide].center}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.7 }}
+              className="w-full max-w-md mx-auto rounded-xl shadow-2xl"
+              alt="Slide"
             />
+          </AnimatePresence>
+        </div>
+
+        {/* Indicators */}
+        <div className="flex justify-center gap-2 mt-6">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-3 rounded-full transition-all duration-300 ${
+                currentSlide === idx ? "bg-orange-500 w-8" : "bg-gray-400 w-3"
+              }`}
+            ></button>
           ))}
         </div>
       </div>
