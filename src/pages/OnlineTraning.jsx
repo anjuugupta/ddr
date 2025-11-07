@@ -63,7 +63,7 @@ function OnlineTraning() {
 <section className="w-full py-16 px-4 md:px-10 bg-white">
       {/* Heading & Description */}
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#2C2C2C]">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#1F215F]">
           Master TDS & TCS with Complete Online Training
         </h2>
         <p className="text-gray-600 mt-4 text-sm md:text-base leading-relaxed">
@@ -94,7 +94,7 @@ function OnlineTraning() {
 
       {/* Who Should Attend Section */}
       <div className="max-w-6xl mx-auto mt-20">
-        <h3 className="text-center text-2xl md:text-3xl font-semibold text-[#2C2C2C]">
+        <h3 className="text-center text-2xl md:text-3xl font-semibold text-[#1F215F]">
           Who Should Attend
         </h3>
 

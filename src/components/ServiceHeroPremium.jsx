@@ -47,7 +47,7 @@ const ServiceHeroPremium = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-4 md:px-6">
 
-   <h2 className="text-3xl md:text-5xl font-bold text-orange-500 mb-8 md:mb-12 text-center pt-40">
+   <h2 className="text-3xl md:text-5xl font-bold text-orange-500 mb-8 md:mb-12 text-center pt-20">
             Software Solution
           </h2>
         <img
